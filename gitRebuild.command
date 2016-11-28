@@ -12,8 +12,8 @@
 # https://github.com/onierstrasz/gitrebuild/
 
 # This script should be run directly from the root of a cloned git repo
-D=`dirname "$0"`
-cd "$D"
+D=$(dirname "$0")
+cd "$D" || exit
 
 if test ! -d .git
 then
@@ -22,11 +22,11 @@ then
 fi
 
 # Extract the location of the git repo from the configuration
-U=`fgrep 'url =' .git/config | sed 's/\s*url = //'`
+U=$(fgrep 'url =' .git/config | sed 's/\s*url = //')
 
 # Clone the repo again to a temporary folder
 T=tmp$$
-git clone $U $T
+git clone "$U" $T
 
 # Replace the current git history (.git folder) with the fresh one
 rm -rf .git
