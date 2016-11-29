@@ -22,7 +22,8 @@ then
 fi
 
 # Extract the location of the git repo from the configuration
-U=$(fgrep 'url =' .git/config | sed 's/\s*url = //')
+U=$(fgrep 'url =' .git/config | sed 's/.*url = //')
+
 
 # Clone the repo again to a temporary folder
 T=tmp$$
